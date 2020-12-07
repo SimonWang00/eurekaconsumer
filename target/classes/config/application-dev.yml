@@ -1,0 +1,37 @@
+# 应用级配置
+domain: eurekaconsumer
+server:
+  port: 9002
+  address: 0.0.0.0
+  ssl: 
+    enabled: false 
+  session: 
+    session: 
+      persistent: true
+      #1800 seconds,30 minutes
+      timeout: 1800
+      store-dir: /sessiontmp
+spring:
+  application:
+    name: eurekaconsumer
+  jackson:
+    date-format: yyyy-MM-dd
+    time-zone: GMT+8
+    default-property-inclusion: NON_NULL
+  aop:
+    auto: true
+  resources:
+    static-locations: classpath:/resources/
+
+logging:
+  config: classpath:config/logback-spring.xml
+
+#Eureka
+eureka: 
+  instance: 
+    preferIpAddress: true
+    statusPageUrlPath: /actuator/info
+    healthCheckUrlPath: /actuator/health
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
